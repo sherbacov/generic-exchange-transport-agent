@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependencies", "Dependencies\Dependencies.csproj", "{10D3175B-387D-4252-908D-E453BB4E1D8D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication", "NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication\NeosIT.Exchange.GenericExchangeTransportAgent.ConsoleApplication.csproj", "{06EA279A-FF8F-47DE-A57D-CF49B1B14261}"
@@ -26,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.DkimSigningHandler.csproj", "{3EFCF61F-A6BB-4EB3-B73B-A72B0CF044F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.csproj", "{A5486C2F-19D1-4C91-B0AD-7E3BFAE2D259}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler", "NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler.csproj", "{4FC88821-7CE1-426C-9898-C479DD1852E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +89,10 @@ Global
 		{A5486C2F-19D1-4C91-B0AD-7E3BFAE2D259}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5486C2F-19D1-4C91-B0AD-7E3BFAE2D259}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5486C2F-19D1-4C91-B0AD-7E3BFAE2D259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FC88821-7CE1-426C-9898-C479DD1852E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FC88821-7CE1-426C-9898-C479DD1852E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FC88821-7CE1-426C-9898-C479DD1852E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FC88821-7CE1-426C-9898-C479DD1852E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

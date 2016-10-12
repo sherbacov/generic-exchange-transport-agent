@@ -4,52 +4,47 @@ using NUnit.Framework;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.ExtractAttachmentHandler.Impl;
+using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler.Impl;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
 {
     [TestFixture]
-    public class ExtractAttachmentHandlerHandlerTests : OptionsHandlerTestBase<ExtractAttachmentHandler>
+    public class UnCompressAttachmentHandlerHandlerTests : OptionsHandlerTestBase<UncompressAttachmentHandler>
     {
         [TestFixtureSetUp]
         public void TestFixtureSetUp()
         {
-            Name = "ExtractAttachmentHandler";
+            Name = "UncompressAttachmentHandler";
         }
 
         [Test]
         public void ExtractTest()
         {
-            const string outputPath = @"C:\temp\unittests\geta\extractattachmenthandler";
-            const string filename = @"config.xml";
+            const string list = @"..\..\Samples\152T_01.arj;..\..\Samples\bad.rar;..\..\Samples\testzip.zip;..\..\Samples\testnotpacked.txt";
 
-            const string existingFilename = @"C:\temp\config.xml";
+            var emailMessage = EmailMessageHelper.CreateTextEmailMessage("UncompressAttachmentHandler Subject",
+                                                                         "UncompressAttachmentHandler Body");
 
-            var emailMessage = EmailMessageHelper.CreateTextEmailMessage("ExtractAttachmentHandler Subject",
-                                                                     "ExtractAttachmentHandler Body");
-
-            Attachment attachment = emailMessage.Attachments.Add(filename);
-            using (var writeStream = attachment.GetContentWriteStream())
+            foreach (var fileName in list.Split(';'))
             {
-                using (var fileStream = new FileStream(existingFilename, FileMode.Open))
+                Attachment attachment = emailMessage.Attachments.Add(Path.GetFileName(fileName));
+                using (var writeStream = attachment.GetContentWriteStream())
                 {
-                    fileStream.CopyTo(writeStream);
+                    using (var fileStream = new FileStream(fileName, FileMode.Open))
+                    {
+                        fileStream.CopyTo(writeStream);
+                    }
                 }
             }
-            
-            
-            TestObject.Settings[ExtractAttachmentHandler.OutputPathKey] = outputPath;
+
+            TestObject.Settings[UncompressAttachmentHandler.ExtensionsList] = "zip;arj;rar";
 
             PrepareLogger();
 
             TestObject.Execute(new EmailItem(emailMessage));
 
-            FileInfo fileInfo = new FileInfo(Path.Combine(outputPath, filename));
-            Assert.IsTrue(fileInfo.Exists);
-            Assert.IsTrue(fileInfo.Length > 0);
-            
-            FileInfo existingFileInfo = new FileInfo(existingFilename);
-            Assert.AreEqual(existingFileInfo.Length, fileInfo.Length);
+            Assert.IsTrue(emailMessage.Attachments.Count == 6);
         }
     }
 }

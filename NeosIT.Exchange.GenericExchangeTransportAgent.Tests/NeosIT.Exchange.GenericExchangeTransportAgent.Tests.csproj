@@ -41,6 +41,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\Libs\Microsoft.Exchange.Data.Transport.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net35\Ninject.dll</HintPath>
@@ -55,6 +56,10 @@
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SevenZipSharp, Version=0.64.3890.29348, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL">
+      <HintPath>..\packages\SevenZipSharp.0.64\lib\SevenZipSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -128,6 +133,10 @@
     <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler.csproj">
       <Project>{a5486c2f-19d1-4c91-b0ad-7e3bfae2d259}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.TwitterNotificationHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler.csproj">
+      <Project>{4fc88821-7ce1-426c-9898-c479dd1852e0}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler</Name>
     </ProjectReference>
     <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent\NeosIT.Exchange.GenericExchangeTransportAgent.csproj">
       <Project>{0B1622B1-0301-45BB-A2F4-21359DE6B66A}</Project>

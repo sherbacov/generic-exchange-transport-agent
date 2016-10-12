@@ -1,13 +1,16 @@
 ﻿using Microsoft.Exchange.Data.Transport;
 using Microsoft.Exchange.Data.Transport.Delivery;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Agents;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Impl.Factories;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Helpers;
+using Assert = NUnit.Framework.Assert;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Base.Factories
 {
     [TestFixture]
+    
     public class GenericDeliveryAgentFactoryTests : FactoryTestBase<GenericDeliveryAgentFactory<TestDeliveryAgentManager>>
     {
         [Test]
