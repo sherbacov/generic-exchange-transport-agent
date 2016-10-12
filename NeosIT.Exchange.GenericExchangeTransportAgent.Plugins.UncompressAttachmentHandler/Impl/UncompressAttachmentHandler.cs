@@ -88,8 +88,10 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttach
 
                                         var attc = emailItem.Message.Attachments.Add(archiveFileInfo.FileName);
                                         var writeStream = attc.GetContentWriteStream();
-
+                                        
                                         szip.ExtractFile(archiveFileInfo.Index, writeStream);
+
+                                        writeStream.Close();
 
                                         Logger.Debug("[GenericTransportAgent] File added {0} to mail message.", archiveFileInfo.FileName);
                                     }

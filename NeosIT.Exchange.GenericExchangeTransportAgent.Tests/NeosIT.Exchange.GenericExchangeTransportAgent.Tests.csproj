@@ -89,7 +89,7 @@
     <Compile Include="Plugins\DisclaimerHandlerTests.cs" />
     <Compile Include="Plugins\DkimSigningHandlerTests.cs" />
     <Compile Include="Plugins\ExecutableHandlerTests.cs" />
-    <Compile Include="Plugins\ExtractAttachmentHandlerTests.cs" />
+    <Compile Include="Plugins\UnCompressAttachmentHandlerTests.cs" />
     <Compile Include="Plugins\NoopHandlerTests.cs" />
     <Compile Include="Helpers\HandlerTestBase.cs" />
     <Compile Include="Plugins\TwitterNotificationHandlerTests.cs" />

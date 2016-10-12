@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using Microsoft.Exchange.Data.Transport.Email;
 using NUnit.Framework;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
@@ -45,6 +46,19 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
             TestObject.Execute(new EmailItem(emailMessage));
 
             Assert.IsTrue(emailMessage.Attachments.Count == 6);
+
+            //test unpacked content
+            var testfile = "test file.txt";
+            var testfileContent = "Test content";
+
+            var testAttachment = emailMessage.Attachments.FirstOrDefault(a => a.FileName == testfile);
+            Assert.IsNotNull(testAttachment, "Test attachment not found.");
+
+            var readStream = testAttachment.GetContentReadStream();
+
+            var sr = new StreamReader(readStream).ReadToEnd();
+
+            Assert.AreEqual(testfileContent, sr);
         }
     }
 }
