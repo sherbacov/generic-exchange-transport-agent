@@ -22,7 +22,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
         [Test]
         public void ExtractTest()
         {
-            const string list = @"..\..\Samples\152T_01.arj;..\..\Samples\bad.rar;..\..\Samples\testzip.zip;..\..\Samples\testnotpacked.txt";
+            const string list = @"..\..\Samples\152T_01.arj;..\..\Samples\bad.rar;..\..\Samples\testzip.zip;..\..\Samples\testnotpacked.txt;..\..\Samples\noext";
 
             var emailMessage = EmailMessageHelper.CreateTextEmailMessage("UncompressAttachmentHandler Subject",
                                                                          "UncompressAttachmentHandler Body");
@@ -45,7 +45,7 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Tests.Plugins
 
             TestObject.Execute(new EmailItem(emailMessage));
 
-            Assert.IsTrue(emailMessage.Attachments.Count == 6);
+            Assert.IsTrue(emailMessage.Attachments.Count == 8, string.Format("Count expected - {0}, real - {1}", 8, emailMessage.Attachments.Count));
 
             //test unpacked content
             var testfile = "test file.txt";

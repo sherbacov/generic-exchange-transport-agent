@@ -7,12 +7,8 @@ using System.Runtime.Serialization;
 using Microsoft.Exchange.Data.Transport.Email;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl;
-using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.Common.Impl.Extensions;
 using NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler.Impl.Forms;
 using SevenZip;
-using SharpCompress.Archives;
-using SharpCompress.Archives.SevenZip;
-using SharpCompress.Readers;
 
 namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler.Impl
 {
@@ -67,8 +63,9 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttach
                     {
                         Logger.Debug("[GenericTransportAgent] FileName {0}...", attachment.FileName);
 
-                        var ext = Path.GetExtension(attachment.FileName).TrimStart('.');
-                        if (ext == null) ext = "";
+                        var ext = Path.GetExtension(attachment.FileName) ?? "";
+
+                        ext = ext.TrimStart('.');
 
                         var extList = Settings[ExtensionsList].Split(';');
 
@@ -87,11 +84,11 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttach
                                         if (archiveFileInfo.IsDirectory) continue;
 
                                         var attc = emailItem.Message.Attachments.Add(archiveFileInfo.FileName);
-                                        var writeStream = attc.GetContentWriteStream();
-                                        
-                                        szip.ExtractFile(archiveFileInfo.Index, writeStream);
 
-                                        writeStream.Close();
+                                        using (var writeStream = attc.GetContentWriteStream())
+                                        {
+                                            szip.ExtractFile(archiveFileInfo.Index, writeStream);
+                                        }
 
                                         Logger.Debug("[GenericTransportAgent] File added {0} to mail message.", archiveFileInfo.FileName);
                                     }
@@ -120,17 +117,6 @@ namespace NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttach
                     }
                 }
             }
-        }
-
-        private static void CopyAttachment(IEmailItem emailItem, Attachment attachment)
-        {
-            var attc = emailItem.Message.Attachments.Add(attachment.FileName, attachment.ContentType);
-
-            var readStream = attachment.GetContentReadStream();
-            readStream.Position = 0;
-
-            var writeStream = attc.GetContentWriteStream();
-            readStream.CopyTo(writeStream);
         }
 
         public override string Name
