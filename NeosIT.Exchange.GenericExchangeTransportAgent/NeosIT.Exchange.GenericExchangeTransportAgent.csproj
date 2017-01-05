@@ -87,6 +87,10 @@
       <Project>{96949535-995a-4536-adba-f2d60d54b8d6}</Project>
       <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.NoopHandler</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler\NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler.csproj">
+      <Project>{4fc88821-7ce1-426c-9898-c479dd1852e0}</Project>
+      <Name>NeosIT.Exchange.GenericExchangeTransportAgent.Plugins.UncompressAttachmentHandler</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
